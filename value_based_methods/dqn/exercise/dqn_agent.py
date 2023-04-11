@@ -3,7 +3,7 @@ import random
 from collections import namedtuple, deque
 import matplotlib.pyplot as plt
 
-# from model import QNetwork
+from model import QNetwork
 
 import torch
 import torch.nn.functional as F
@@ -90,25 +90,13 @@ class Agent():
 
         ## TODO: compute and minimize the loss
         "*** YOUR CODE HERE ***"
-        # for sample_i in range(experiences.shape[0]):
-        #     # calculate target
-        #     td_target = experiences[sample_i][2] + gamma*np.max(self.qnetwork_target.forward(experiences[i][3])) * (1-experiences[sample_i][4])     # reward + gamma * max(Q(s', a')) * (1-done)
 
-        #     # q_value_local
-        #     q_value_local = self.qnetwork_local.forward(experiences[sample_i][0])[experiences[sample_i][1]]     # Q(s, a)
-
-        #     # Compute loss
-        #     loss = F.mse_loss(q_value_local, td_target)
-        #     self.optimizer.zero_grad() # don't know why should do this
-        #     loss.bacward()
-        #     self.optimizer.step()
-
-#         print(f"Agent.learn method called.")
-        # doing it with matrix operations
+        # Target values
         td_targets_next_states = self.qnetwork_target(next_states).detach().max(1)[0].unsqueeze(1)
         td_targets = rewards + (gamma*td_targets_next_states * (1-dones)) # reward + gamma * max(Q(s', a')) * (1-done)
 #         print(f"td_targets_next_states: {td_targets_next_states.shape}. Should be {rewards.shape[0]}")
         
+        # Current value Q(S,a)
         q_values_local = self.qnetwork_local(states).gather(1, actions) # Q
 
         # compute loss
