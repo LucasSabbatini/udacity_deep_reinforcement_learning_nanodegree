@@ -46,7 +46,8 @@ def animate_frames(frames):
     fanim = animation.FuncAnimation(plt.gcf(), \
         lambda x: patch.set_data(frames[x]), frames = len(frames), interval=30)
     
-    display(display_animation(fanim, default_mode='once'))
+    # display(display_animation(fanim, default_mode='once'))
+    display(display_animation(fanim))
     
 # play a game and display the animation
 # nrand = number of random steps before using the policy
