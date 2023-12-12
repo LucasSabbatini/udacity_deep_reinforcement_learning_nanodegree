@@ -122,7 +122,6 @@ class Node:
 
         current = self
 
-        
         # explore children of the node
         # to speed things up 
         while current.child and current.outcome is None:
@@ -175,8 +174,6 @@ class Node:
 
             current = current.mother
 
-
-               
     def next(self, temperature=1.0):
 
         if self.game.score is not None:
@@ -188,7 +185,6 @@ class Node:
         
         child=self.child
 
-        
         # if there are winning moves, just output those
         max_U = max(c.U for c in child.values())
 

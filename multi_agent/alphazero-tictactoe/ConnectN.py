@@ -24,8 +24,6 @@ def in_a_row(v, N, i):
           _, _, total = get_runs(v,i)
           return np.any(total >= N) 
      
-
- 
 def get_lines(matrix, loc):
 
      i,j=loc
@@ -65,10 +63,6 @@ def get_lines(matrix, loc):
 
      return hor, ver, diag_right, diag_left
         
-
-
-
-
 
 class ConnectN:
 
